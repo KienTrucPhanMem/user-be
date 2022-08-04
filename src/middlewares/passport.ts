@@ -23,7 +23,6 @@ const passportJwt = (passport: PassportStatic) => {
           .exec()
           .then((user) => {
             if (!user) return done(null, false);
-            if (user.password) delete user.password;
             req.user = user;
             return done(null, user);
           })
@@ -43,7 +42,6 @@ const passportJwt = (passport: PassportStatic) => {
       .exec()
       .then((user) => {
         if (!user) return done(null, false);
-        if (user.password) delete user.password;
         return done(null, user);
       })
       .catch((err) => {

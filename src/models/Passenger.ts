@@ -10,7 +10,6 @@ export interface IPassenger extends Document {
   phone: string;
   fullName: string;
   email?: string;
-  password?: string;
   gender: Gender;
   FCM_token?: string;
 }
@@ -29,7 +28,6 @@ const PassengerSchema = new Schema<IPassenger>(
     },
     fullName: { type: String, required: true },
     email: { type: String },
-    password: { type: String },
     gender: {
       type: String,
       enum: Gender,

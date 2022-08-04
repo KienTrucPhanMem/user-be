@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { hash } from "../../helpers/password";
 import {
   BadRequestResponse,
   ErrorResponse,
@@ -13,7 +12,7 @@ import {
   getUser,
   getUsers,
   updateUser,
-} from "../../services/user.service";
+} from "../../services/passenger.service";
 
 const userController = {
   async get(_: Request, res: Response) {
@@ -55,9 +54,6 @@ const userController = {
       return BadRequestResponse(res, req.__("Invalid phone number"));
     }
 
-    // Hash password if any
-    if (data.password) data.password = await hash(data.password);
-
     // Create user
     try {
       let exitsUser = await getUser({ phone: data.phone });
@@ -79,9 +75,6 @@ const userController = {
   async put(req: Request, res: Response) {
     try {
       let data = req.body as IPassenger;
-
-      // Hash password if any
-      if (data.password) data.password = await hash(data.password);
 
       let updatedUser = await updateUser({ _id: req.user!._id }, data);
       return SuccessResponse(res, updatedUser);
