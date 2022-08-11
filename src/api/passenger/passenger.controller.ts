@@ -51,7 +51,7 @@ const userController = {
 
     // Check & validate phone number
     if (!data.phone) {
-      return BadRequestResponse(res, req.__("Invalid phone number"));
+      return BadRequestResponse(res, "Phone is invalid");
     }
 
     // Create user
@@ -59,10 +59,7 @@ const userController = {
       let exitsUser = await getUser({ phone: data.phone });
 
       if (exitsUser) {
-        return BadRequestResponse(
-          res,
-          req.__("Số điện thoại này đã được sử dụng")
-        );
+        return BadRequestResponse(res, "Phone is used");
       }
 
       let user = await createUser(data);

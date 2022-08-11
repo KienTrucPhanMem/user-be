@@ -1,23 +1,23 @@
 import { Router } from "express";
-import passport from "passport";
+// import passport from "passport";
 import passengerController from "./passenger.controller";
 
 const router = Router();
 
-const jwt_auth = passport.authenticate("jwt", { session: false });
+// const jwt_auth = passport.authenticate("jwt", { session: false });
 
-router.get("/passengers", jwt_auth, passengerController.get);
-router.get("/passengers/:id", [jwt_auth], passengerController.getById);
+router.get("/passengers", passengerController.get);
+router.get("/passengers/:id", passengerController.getById);
 router.get(
   "/passengers/phone/:phone",
-  [jwt_auth],
+
   passengerController.getByPhone
 );
 
-router.post("/passengers", [jwt_auth], passengerController.post);
+router.post("/passengers", passengerController.post);
 
-router.put("/passengers", jwt_auth, passengerController.put);
+router.put("/passengers", passengerController.put);
 
-router.delete("/passengers/:id", [jwt_auth], passengerController.delete);
+router.delete("/passengers/:id", passengerController.delete);
 
 module.exports = router;
