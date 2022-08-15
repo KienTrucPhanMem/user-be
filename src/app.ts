@@ -1,5 +1,4 @@
 import cors from "cors";
-import dotenv from "dotenv";
 import express from "express";
 import morgan from "morgan";
 import passport from "passport";
@@ -7,7 +6,7 @@ import path from "path";
 import router from "./routes";
 
 /* ENV */
-dotenv.config();
+require("dotenv").config();
 
 /* CONSTANT */
 const app = express();
