@@ -10,7 +10,7 @@ require("dotenv").config();
 
 /* CONSTANT */
 const app = express();
-const HOST: string = process.env.HOST || "127.0.0.1";
+const HOST: string = process.env.HOST || "0.0.0.0";
 const PORT: number = +(process.env.PORT || 8000);
 
 /* LOGGING */
