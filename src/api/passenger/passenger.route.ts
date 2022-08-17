@@ -16,7 +16,7 @@ router.get(
 
 router.post("/passengers", passengerController.post);
 
-router.put("/passengers", passengerController.put);
+router.put("/passengers/:id", passengerController.put);
 
 router.delete("/passengers/:id", passengerController.delete);
 
