@@ -12,6 +12,7 @@ export interface IPassenger extends Document {
   email?: string;
   gender: Gender;
   FCM_token?: string;
+  role: "USER" | "DRIVER";
 }
 
 const PassengerSchema = new Schema<IPassenger>(
