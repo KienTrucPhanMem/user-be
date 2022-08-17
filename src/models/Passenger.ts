@@ -36,6 +36,7 @@ const PassengerSchema = new Schema<IPassenger>(
       default: Gender.MALE,
     },
     FCM_token: { type: String },
+    role: { type: String },
   },
   {
     timestamps: true,
