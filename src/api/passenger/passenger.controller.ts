@@ -70,10 +70,12 @@ const userController = {
   },
 
   async put(req: Request, res: Response) {
+    const { id } = req.params;
+
     try {
       let data = req.body as IPassenger;
 
-      let updatedUser = await updateUser({ _id: req.user!._id }, data);
+      let updatedUser = await updateUser({ _id: id }, data);
       return SuccessResponse(res, updatedUser);
     } catch (err: any) {
       return ErrorResponse(res, err.message);
