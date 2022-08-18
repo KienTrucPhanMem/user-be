@@ -15,6 +15,10 @@ router.get(
 );
 
 router.post("/passengers", passengerController.post);
+router.post(
+  "/passengers/push-notification",
+  passengerController.pushNotification
+);
 
 router.put("/passengers/:id", passengerController.put);
 

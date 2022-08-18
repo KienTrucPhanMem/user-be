@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Request, Response } from "express";
 import {
   BadRequestResponse,
@@ -64,6 +65,39 @@ const userController = {
 
       let user = await createUser(data);
       return SuccessResponse(res, user);
+    } catch (err: any) {
+      return ErrorResponse(res, err.message);
+    }
+  },
+
+  async pushNotification(req: Request, res: Response) {
+    let data = req.body as any;
+
+    // Create user
+    try {
+      let user = await getUser({ _id: data.passengerId });
+
+      if (!user || !user.FCM_token) {
+        return BadRequestResponse(res, "User or FCM_token invalid");
+      }
+
+      await axios.post(
+        "https://exp.host/--/api/v2/push/send",
+        JSON.stringify({
+          to: user.FCM_token,
+          sound: "default",
+          title: "Original Title",
+          body: "And here is the body!",
+          data: data,
+        }),
+        {
+          headers: {
+            Accept: "application/json",
+            "Accept-encoding": "gzip, deflate",
+            "Content-Type": "application/json",
+          },
+        }
+      );
     } catch (err: any) {
       return ErrorResponse(res, err.message);
     }
