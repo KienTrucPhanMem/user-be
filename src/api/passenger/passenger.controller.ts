@@ -98,6 +98,8 @@ const userController = {
           },
         }
       );
+
+      return SuccessResponse(res, "ok");
     } catch (err: any) {
       return ErrorResponse(res, err.message);
     }
