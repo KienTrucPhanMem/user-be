@@ -86,8 +86,8 @@ const userController = {
         JSON.stringify({
           to: user.FCM_token,
           sound: "default",
-          title: "Original Title",
-          body: "And here is the body!",
+          title: data.title || "Original Title",
+          body: data.body || "And here is the body!",
           data: data,
         }),
         {
