@@ -77,7 +77,7 @@ const userController = {
     try {
       let user = await getUser({ _id: data.passengerId });
 
-      if (!user || !user.FCM_token) {
+      if (!user || !user.FCM_token || !data.passengerId) {
         return BadRequestResponse(res, "User or FCM_token invalid");
       }
 
